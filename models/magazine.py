@@ -1,4 +1,4 @@
-from database import connection 
+from database.connection import get_db_connection
 
 class Magazine:
     def __init__(self, id, name, category):
@@ -12,7 +12,7 @@ class Magazine:
             FROM articles 
             WHERE magazine_id = ?
         """
-        with connection.get_db_connection() as conn:
+        with get_db_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(query, (self.id,))
             return cursor.fetchall()
@@ -24,7 +24,7 @@ class Magazine:
             JOIN articles ON authors.id = articles.author_id 
             WHERE articles.magazine_id = ?
         """
-        with connection.get_db_connection() as conn:
+        with get_db_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(query, (self.id,))
             return cursor.fetchall()

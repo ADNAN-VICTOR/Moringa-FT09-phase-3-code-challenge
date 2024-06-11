@@ -1,4 +1,4 @@
-from database import connection
+from database.connection import get_db_connection
 
 class Article:
     def __init__(self, id, title, content, author_id, magazine_id):
